@@ -13,7 +13,8 @@ class User(DB.Model):
     username = DB.Column(DB.String, nullable = False)
 
     def __repr__(self):
-        return f"<User: {user.username}>"
+        return f"<User: {self.username}>"
+        
 
 
 
@@ -22,11 +23,11 @@ class User(DB.Model):
 class Tweets(DB.Model):
     # id column is primary key for tweets table
     id = DB.Column(DB.BigInteger, primary_key = True)
-    text = DB.Column(DB.String, nullable = False)
+    text = DB.Column(DB.Unicode(300))
     user_id = DB.Column(DB.BigInteger, DB.ForeignKey('user.id'), nullable = False)
 
 
-    user = DB.relationship('User', DB.backref == ('tweets'), lazy = True)
+    user = DB.relationship('User', backref = DB.backref('tweets', lazy = True))
     
     def __repr__(self):
         return f"<Tweet: {self.text}>"
