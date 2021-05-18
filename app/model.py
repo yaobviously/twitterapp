@@ -13,8 +13,7 @@ class User(DB.Model):
     username = DB.Column(DB.String, nullable = False)
 
     def __repr__(self):
-        return f"<User: {self.username}>"
-        
+        return f"<User: {self.username}>"      
 
 
 

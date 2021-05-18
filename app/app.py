@@ -5,8 +5,8 @@ def create_app():
     """ Creates and configures an instance of the Flask application """
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY-DATABASE_URI"] = "sqlite:///db.sqlite3"
-    app.config["SQLALCHEMY-TRACK-MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///twitter.sqlite3"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
 
     @app.route('/')
@@ -21,7 +21,7 @@ def create_app():
         users = User.query.all()
         return render_template("base.html", title = "Home", users = users)
 
-    @app.populate('/populate')
+    @app.route('/populate')
     def populate():
         insert_users(['elon musk', 'jack black'])
         users = User.query.all()
@@ -36,5 +36,3 @@ def insert_users(usernames):
         user = User(id = id_index, username = username)
         DB.session.add(user)
         DB.session.commit()
-
-
