@@ -1,3 +1,4 @@
+import os
 from os import getenv
 from flask import Flask, render_template
 from .model import DB, User
@@ -21,7 +22,8 @@ def create_app():
     def populate():
         add_or_update_user("elonmusk")
         add_or_update_user("jackblack")
-        return render_template("base.html", title = "Home", users = Users.query.all())
+        add_or_update_user("eigenrobot")
+        return render_template("base.html", title = "Home", users = User.query.all())
 
     @app.route('/reset')
     def reset():

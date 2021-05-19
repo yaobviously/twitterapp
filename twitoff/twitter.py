@@ -1,3 +1,4 @@
+import os
 from os import getenv
 import tweepy
 from .model import DB, Tweets, User
@@ -5,13 +6,13 @@ import tweepy
 import spacy
 
 # Authenticates our keys and enables us to use the Twitter API
-API_KEY = getenv("TWITTER_KEY")
-API_SECRET_KEY = getenv("TWITTER_SECRET_KEY")
+API_KEY = os.getenv("TWITTER_KEY")
+API_SECRET_KEY = os.getenv("TWITTER_SECRET_KEY")
 TWITTER_AUTH = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 api = tweepy.API(TWITTER_AUTH)
 
 # Loads the pickled spacy model
-nlp = spacy.load(r"..\my_model")
+nlp = spacy.load(r"\\LAPTOP-ITBD4G7J\Users\yaobv\twitterapp\twitterapp\my_model")
 
 
 # A function to vectorize tweets
@@ -26,7 +27,7 @@ def add_or_update_user(username):
     """
 
     try:
-        twitter_user = api.get_user(user)        
+        twitter_user = api.get_user(username)        
         
         db_user = User.query.get(twitter_user.id) or User(
             id = twitter_user.id, username = username)
@@ -48,7 +49,7 @@ def add_or_update_user(username):
         for tweet in tweets:
             tweet_vector = vectorize_tweet(tweet.full_text)
 
-            db_tweet = Tweet(
+            db_tweet = Tweets(
                 id = tweet.id, text = tweet.full_text, vect = tweet_vector
             )
 
@@ -63,3 +64,6 @@ def add_or_update_user(username):
     else:
         DB.session.commit()
 
+twitter_user = api.get_user("metorotem")
+
+print(twitter_user.location)
