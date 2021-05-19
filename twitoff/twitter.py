@@ -12,7 +12,8 @@ TWITTER_AUTH = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 api = tweepy.API(TWITTER_AUTH)
 
 # Loads the pickled spacy model
-nlp = spacy.load(r"\\LAPTOP-ITBD4G7J\Users\yaobv\twitterapp\twitterapp\my_model")
+nlp = spacy.load(
+    r"..\my_model")
 
 
 # A function to vectorize tweets
@@ -37,8 +38,8 @@ def add_or_update_user(username):
 
         tweets = twitter_user.timeline(
             count = 200,
-            exclude_replies = True,
-            include_rts = False,
+            exclude_replies = False,
+            include_rts = True,
             tweet_mode = 'extended',
             since_id = db_user.newest_tweet_id
         )
@@ -64,6 +65,6 @@ def add_or_update_user(username):
     else:
         DB.session.commit()
 
-twitter_user = api.get_user("metorotem")
+twitter_user = api.get_user("death_reminder")
 
 print(twitter_user.location)
