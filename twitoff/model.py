@@ -40,7 +40,7 @@ class Tweets(DB.Model):
 #      text = DB.Column(DB.Unicode(300))
 #      user_id = DB.Column(DB.BigInterger, DB.ForeignKey(
 #          'user.id'), nullable = False
-)   
+  
     
     
     def __repr__(self):
