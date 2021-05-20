@@ -2,7 +2,7 @@ import os
 import psycopg2 as pg2
 from os import getenv
 from flask import Flask, render_template, request
-from .model import DB, User
+from .model import DB, User, Tweets
 from .twitter import add_or_update_user
 from .predict import predict_user
 
@@ -19,8 +19,11 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
     
-    conn = pg2.connect(URI, sslmode='require')
-
+    # conn = pg2.connect(URI, sslmode='require')
+    DB.create_all()
+    DB.session.commit()
+    add_or_update_user("eigenrobot")
+    add_or_update_user("")
 
     @app.route('/')
     def root():
