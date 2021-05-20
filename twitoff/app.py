@@ -13,7 +13,7 @@ def create_app():
     URI = os.getenv("DATABASE_URL")
 
     if URI.startswith("postgres://"):
-        URU = URI.replace("postgres://", "postgresql://", 1)
+        URI = URI.replace("postgres://", "postgresql://", 1)
     
     app.config["SQLALCHEMY_DATABASE_URI"] = URI
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
