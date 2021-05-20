@@ -23,7 +23,7 @@ class User(DB.Model):
 
 class Tweets(DB.Model):
     # id column is primary key for tweets table
-    __table__ = 'tweets'
+    __tablename__ = 'tweets'
 
     id = DB.Column(DB.BigInteger, primary_key = True)
     text = DB.Column(DB.Unicode(300))
@@ -35,11 +35,11 @@ class Tweets(DB.Model):
     user = DB.relationship('User', backref = DB.backref('tweets', lazy = True))
     
     
- class Faves(DB.Model):
-     id = DB.Column(DB.BigInteger, primary_key = True)
-     text = DB.Column(DB.Unicode(300))
-     user_id = DB.Column(DB.BigInterger, DB.ForeignKey(
-         'user.id'), nullable = False
+#  class Faves(DB.Model):
+#      id = DB.Column(DB.BigInteger, primary_key = True)
+#      text = DB.Column(DB.Unicode(300))
+#      user_id = DB.Column(DB.BigInterger, DB.ForeignKey(
+#          'user.id'), nullable = False
 )   
     
     
