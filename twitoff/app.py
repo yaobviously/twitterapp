@@ -9,7 +9,7 @@ def create_app():
     """ Creates and configures an instance of the Flask application """
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///twitter.sqlite3"
+    app.config["SQLALCHEMY_DATABASE_URL"] = getenv("DATABASE_URL")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
 
