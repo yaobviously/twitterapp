@@ -24,7 +24,7 @@ def create_app():
         DB.create_all()
         DB.session.commit()
         add_or_update_user("eigenrobot")
-        add_or_update_user("")
+        add_or_update_user("yaobviously")
 
     @app.route('/')
     def root():
