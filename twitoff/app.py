@@ -18,6 +18,8 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = URI
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
+    DB.create_all()
+    DB.commit()
 
     @app.route('/')
     def root():
