@@ -12,8 +12,7 @@ TWITTER_AUTH = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
 api = tweepy.API(TWITTER_AUTH)
 
 # Loads the pickled spacy model
-nlp = spacy.load(
-    r"..\my_model")
+nlp = spacy.load(r"my_model")
 
 
 # A function to vectorize tweets
