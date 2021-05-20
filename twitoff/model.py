@@ -1,7 +1,6 @@
 """ SQLalchemy models and database management """
 
 from flask_sqlalchemy import SQLAlchemy
-from .app import DB
 
 DB = SQLAlchemy()
 
@@ -33,19 +32,7 @@ class Tweets(DB.Model):
         'user.id'), nullable = False)
 
 
-    user = DB.relationship('User', backref = DB.backref('tweets', lazy = True))
-    
-    
-db.create_all()
-db.session.commit()
-
-#  class Faves(DB.Model):
-#      id = DB.Column(DB.BigInteger, primary_key = True)
-#      text = DB.Column(DB.Unicode(300))
-#      user_id = DB.Column(DB.BigInterger, DB.ForeignKey(
-#          'user.id'), nullable = False
-  
-    
+    user = DB.relationship('User', backref = DB.backref('tweets', lazy = True)) 
     
     def __repr__(self):
         return f"<Tweet: {self.text}>"
