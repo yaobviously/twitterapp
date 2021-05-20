@@ -20,10 +20,11 @@ def create_app():
     DB.init_app(app)
     
     # conn = pg2.connect(URI, sslmode='require')
-    DB.create_all()
-    DB.session.commit()
-    add_or_update_user("eigenrobot")
-    add_or_update_user("")
+    with app.app_context():
+        DB.create_all()
+        DB.session.commit()
+        add_or_update_user("eigenrobot")
+        add_or_update_user("")
 
     @app.route('/')
     def root():
