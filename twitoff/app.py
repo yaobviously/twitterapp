@@ -18,12 +18,13 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = URI
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
-    DB.create_all()
+    
+    conn = pg2.connect(URI, sslmode='require')
+
 
     @app.route('/')
     def root():
-        add_or_update_user("eigenrobot")
-        add_or_update_user("AdamSinger")
+        
         users = User.query.all()
         return render_template("base.html", title = 'Home', users = users)
 
