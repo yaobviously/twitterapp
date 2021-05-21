@@ -20,16 +20,16 @@ def create_app():
     DB.init_app(app)
     
     # conn = pg2.connect(URI, sslmode='require')
-    with app.app_context():
-        DB.drop_all()
-        DB.create_all()
-        DB.session.commit()
-        add_or_update_user("eigenrobot")
-        add_or_update_user("yaobviously")
+    # with app.app_context():        
+    #     DB.create_all()
+    #     DB.session.commit()
+    #     add_or_update_user("eigenrobot")
+    #     add_or_update_user("yaobviously")
 
     @app.route('/')
     def root():
-        
+        add_or_update_user("eigenrobot")
+        add_or_update_user("yaobviously")        
         users = User.query.all()
         return render_template("base.html", title = 'Home', users = users)
 
