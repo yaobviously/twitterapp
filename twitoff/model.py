@@ -26,7 +26,7 @@ class Tweets(DB.Model):
     __tablename__ = 'tweets'
 
     id = DB.Column(DB.BigInteger, primary_key = True)
-    text = DB.Column(DB.Unicode(300))
+    text = DB.Column(DB.Unicode(600))
     vect = DB.Column(DB.PickleType, nullable = False)
     user_id = DB.Column(DB.BigInteger, DB.ForeignKey(
         'user.id'), nullable = False)
