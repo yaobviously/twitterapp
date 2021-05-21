@@ -21,6 +21,7 @@ def create_app():
     
     # conn = pg2.connect(URI, sslmode='require')
     with app.app_context():
+        DB.drop_all()
         DB.create_all()
         DB.session.commit()
         add_or_update_user("eigenrobot")
